@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      .montserrat-normal {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+      .montserrat-bold {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #14151f;
+        overflow: hidden;
+      }
+      #follow-img {
+        position: absolute;
+        transform: translateX(-50%);
+        top: 25px;
+      }
+      .hint-area {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        width: 400px;
+        transform: translate(-50%, -50%);
+        color: white;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      #hint-name {
+        font-size: 3em;
+        padding-bottom: 10px;
+      }
+      #hint-img{
+        height: 200px;
+        width: 200px;
+      }
+      #count-down{
+        padding-left: 15px;
+        font-size: 4em;
+        color: white;
+      }
+      .start-page{
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 9;
+        background-color: rgba(0, 0, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .starting-hint{
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="follow-img" src="./img/1.png" alt="" srcset="" />
+    <div onclick="start()" class="start-page">
+      <h1 class="starting-hint montserrat-normal">Press anywhere to start...</h1>
+    </div>
+    <div class="hint-area">
+      <div style="display:flex;flex-direction:row;align-items: center;"><h1 class="montserrat-normal">Next Planet in </h1><h1 class="montserrat-bold" id="count-down">3</h1></div>
+      <span class="montserrat-bold" id="hint-name">Planet</span>
+      <img id="hint-img" src="./img/2.png" alt="" />
+    </div>
+    
+    <script src="./static/matter.min.js"></script>
+    <script src="./static/gsap.min.js"></script>
+    <script src="./Planet.js"></script>
+    <!-- <script src="./app.js"></script> -->
+  </body>
+</html>
