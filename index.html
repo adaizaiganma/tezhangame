@@ -35,6 +35,7 @@
         height: 100vh;
         background-color: #14151f;
         overflow: hidden;
+        color: white;
       }
       #follow-img {
         position: absolute;
@@ -75,15 +76,47 @@
         justify-content: center;
         align-items: center;
       }
-      .starting-hint{
-        color: white;
+      .win-page{
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 9;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform: translateY(-100%);
+        backdrop-filter: blur(10px);
       }
+      .lose-page{
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        z-index: 9;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transform: translateY(-100%);
+        backdrop-filter: blur(10px);
+      }
+
     </style>
   </head>
   <body>
     <img id="follow-img" src="./img/1.png" alt="" srcset="" />
     <div onclick="start()" class="start-page">
-      <h1 class="starting-hint montserrat-normal">Press anywhere to start...</h1>
+      <h1 class="montserrat-normal starting-hint">Press anywhere to start</h1>
+    </div>
+    <div onclick="location.reload()" class="win-page">
+      <h1 class="montserrat-normal">You Win!</h1>
+      <h2 class="montserrat-normal">Press anywhere to play again</h2>
+    </div>
+    <div onclick="location.reload()" class="lose-page">
+      <h1 class="montserrat-normal">You Lost!</h1>
+      <h2 class="montserrat-normal">Press anywhere to play again</h2>
     </div>
     <div class="hint-area">
       <div style="display:flex;flex-direction:row;align-items: center;"><h1 class="montserrat-normal">Next Planet in </h1><h1 class="montserrat-bold" id="count-down">3</h1></div>

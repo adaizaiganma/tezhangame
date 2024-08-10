@@ -107,8 +107,7 @@ Matter.Events.on(engine, "collisionStart", function (event) {
                     }
                 }
                 else{
-                    alert("win!");
-                    stop();
+                    win();
                 }
             }
         }
@@ -123,12 +122,11 @@ Matter.Events.on(engine, "collisionStart", function (event) {
         if not? add it into the array
         if yes? then you're done. the game is over.
         */
-        if (_BodyA.label == "endLine") {
+        if (_BodyA?.label == "endLine") {
             if (droppedPlanetList.indexOf(_BodyB.id) == -1) {
               droppedPlanetList.push(_BodyB.id);
             } else {
-              alert("you lose!");
-              stop();
+              lose();
             }
         }
     }
@@ -162,7 +160,17 @@ function updateEverySecond(){
     }
 }
 function stop(){
-    Matter.Runner.stop(runner);
+  Matter.Runner.stop(runner);
+  clearInterval(countDownTimer);
+  document.body.replaceWith(document.body.cloneNode(true));
+}
+function win(){
+  stop();
+  gsap.to(".win-page",1,{y:0});
+}
+function lose(){
+  stop();
+  gsap.to(".lose-page",1,{y:0});
 }
 document.body.addEventListener("mousemove",(event)=>{
     const img = document.getElementById("follow-img");
@@ -177,11 +185,12 @@ document.body.addEventListener("mousemove",(event)=>{
     img.style.left = _x + (window.innerWidth - canvaWidth) / 2 + "px";
 });
 gsap.fromTo(".starting-hint",0.75,{opacity:0.2},{opacity:0.75,repeat:-1,yoyo:true})
+let countDownTimer;
 function start(){
     gsap.to(".start-page",{y:"-100%"});
     updateHint(0);
     
-    let countDownTimer = setInterval(updateEverySecond,1000);
+    countDownTimer = setInterval(updateEverySecond,1000);
     setTimeout(function() {}, 200);
     document.body.addEventListener("click",()=>{
         updateNewReadyPlanet();
