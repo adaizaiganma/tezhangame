@@ -160,17 +160,18 @@ function updateEverySecond(){
     }
 }
 function stop(){
-  Matter.Runner.stop(runner);
+  runner.enabled = false;
   clearInterval(countDownTimer);
-  document.body.replaceWith(document.body.cloneNode(true));
 }
 function win(){
   stop();
-  gsap.to(".win-page",1,{y:0});
+  var tl = gsap.timeline();
+  tl.to(".win-page",1,{y:0},"+=1");
 }
 function lose(){
   stop();
-  gsap.to(".lose-page",1,{y:0});
+  var tl = gsap.timeline();
+  tl.to(".lose-page",1,{y:0},"+=1");
 }
 document.body.addEventListener("mousemove",(event)=>{
     const img = document.getElementById("follow-img");

@@ -71,7 +71,7 @@
         height: 100vh;
         width: 100%;
         z-index: 9;
-        background-color: rgba(0, 0, 0);
+        background-color: rgba(20, 21, 31);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,12 +102,20 @@
         transform: translateY(-100%);
         backdrop-filter: blur(10px);
       }
-
+      .starbg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+      .starting-hint{
+        pointer-events: none;  
+      }
     </style>
   </head>
   <body>
     <img id="follow-img" src="./img/1.png" alt="" srcset="" />
     <div onclick="start()" class="start-page">
+      <canvas class="starbg"></canvas>
       <h1 class="montserrat-normal starting-hint">Press anywhere to start</h1>
     </div>
     <div onclick="location.reload()" class="win-page">
@@ -126,7 +134,8 @@
     
     <script src="./static/matter.min.js"></script>
     <script src="./static/gsap.min.js"></script>
-    <script src="./Planet.js"></script>
+    <script src="./planet.js"></script>
+    <script src="./star.js"></script>
     <!-- <script src="./app.js"></script> -->
   </body>
 </html>
