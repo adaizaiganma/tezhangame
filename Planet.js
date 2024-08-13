@@ -38,17 +38,32 @@ var render = Matter.Render.create({
 });
 
 function Planet(x, y, id) {
+  let radius = planetsData[id].radius;
+  let imgScale;
+  /*
+  set the image larger for saturn since it has a ring (which dont have physic collision, of course)
+  if i dont do this the collision box(or should i say ball?) is slightly bigger than the texture
+  which will break the experience.
+  */
+  if(id == 5){
+    imgScale = (radius+20)/1000;
+  }
+  else{
+    imgScale = radius/1000
+  }
+
   var options = {
     friction: 0.5,
     restitution: 0.5,
     label: "p" + planetsData[id].name,
     render:{
         sprite:{
-            texture:`./img/${id+1}.png`
+            texture:`./img/${id+1}.png`,
+            xScale:imgScale,
+            yScale:imgScale,
         }
     }
   };
-  let radius = planetsData[id].radius;
   this.body = Matter.Bodies.circle(x, y, radius, options);
   Matter.Composite.add(engine.world, this.body);
   return this.body;
@@ -137,8 +152,13 @@ let random = 0;
 function updateNewReadyPlanet() {
   const img = document.getElementById("follow-img");
   currentReadyPlanet = Planet(canvaWidth / 2, 25, random);
-  random = getRandomInt(4);
+  let tempRandom = getRandomInt(4);
+  while(tempRandom == random){
+    tempRandom = getRandomInt(4);
+  }
+  random = tempRandom;
   img.src = `./img/${random+1}.png`;
+  img.style.width = `${planetsData[random].radius*2}px`
   updateHint(random);
   Matter.Body.setPosition(currentReadyPlanet, { x: X, y: 50 });
 }
@@ -146,7 +166,7 @@ function updateHint(id){
     const hintName = document.querySelector("#hint-name");
     const hintImg = document.querySelector("#hint-img");
     hintName.innerHTML = planetsData[id].name;
-    hintImg.src = `./img/${id+1}.png`
+    hintImg.src = `./img/${id+1}.png`;
 }
 
 const clock = document.querySelector("#count-down");
