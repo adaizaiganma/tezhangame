@@ -12,15 +12,15 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 var planetsData = [];
-planetsData.push(new PlanetData("水星 Mercury", 10)); // mercury and so on.. the last one is the sun
-planetsData.push(new PlanetData("金星 Venus", 15));
-planetsData.push(new PlanetData("地球 Earth", 19));
-planetsData.push(new PlanetData("火星 Mars", 20));
+planetsData.push(new PlanetData("水星 Mercury", 20)); // mercury and so on.. the last one is the sun
+planetsData.push(new PlanetData("金星 Venus", 25));
+planetsData.push(new PlanetData("地球 Earth", 30));
+planetsData.push(new PlanetData("火星 Mars", 40));
 planetsData.push(new PlanetData("木星 Jupiter", 70));
 planetsData.push(new PlanetData("土星 Saturn", 60));
-planetsData.push(new PlanetData("天王星 Uranus", 39));
-planetsData.push(new PlanetData("海王星 Neptune", 40));
-planetsData.push(new PlanetData("太阳 Sun", 150));
+planetsData.push(new PlanetData("天王星 Uranus", 50));
+planetsData.push(new PlanetData("海王星 Neptune", 59));
+planetsData.push(new PlanetData("太阳 Sun", 120));
 
 const canvaWidth = 350;
 const canvaHeight = window.innerHeight;
@@ -210,7 +210,6 @@ let countDownTimer;
 function start(){
     gsap.to(".start-page",{y:"-100%"});
     updateHint(0);
-    
     countDownTimer = setInterval(updateEverySecond,1000);
     setTimeout(function() {}, 200);
     document.body.addEventListener("click",()=>{
